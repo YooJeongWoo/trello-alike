@@ -1,11 +1,16 @@
 <template>
   <div>
-    <h1>Trello Board</h1>
+    <trello-board-column column-name="A" :items="false" />
   </div>
 </template>
 
 <script>
+import TrelloBoardColumn from '@/components/TrelloBoardColumn'
+
 export default {
-  name: 'TrelloBoard'
+  name: 'TrelloBoard',
+  components: {
+    TrelloBoardColumn
+  }
 }
 </script>
