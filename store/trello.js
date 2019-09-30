@@ -27,6 +27,10 @@ export const mutations = {
   pushItemToColumn(state, payload) {
     state.boardData[payload.columnIndex].columnItems.push(payload.item)
     localStorage.setItem('boardData', JSON.stringify(state.boardData))
+  },
+  setItemData(state, payload) {
+    state.boardData[payload.columnIndex].columnItems[payload.itemIndex].data =
+      payload.data
   }
 }
 
@@ -56,5 +60,8 @@ export const actions = {
   },
   addItemToColumn({ commit }, { item, columnIndex }) {
     commit('pushItemToColumn', { item, columnIndex })
+  },
+  setItemName({ commit }, { data, columnIndex, itemIndex }) {
+    commit('setItemData', { data, columnIndex, itemIndex })
   }
 }

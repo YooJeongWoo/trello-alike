@@ -5,8 +5,8 @@
       :key="`c-${index}`"
       :column-data="column"
       :column-index="index"
-      :has-prev="index === 0"
-      :has-next="index === boardData.length - 1"
+      :has-prev="index !== 0"
+      :has-next="index !== boardData.length - 1"
     />
   </div>
 </template>

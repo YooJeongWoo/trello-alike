@@ -1,11 +1,11 @@
 <template>
   <div class="item-card">
     <div class="item-container">
-      <button>
+      <button v-if="hasPrev">
         <span>&lt;</span>
       </button>
       <span>{{ itemData.data }}</span>
-      <button>
+      <button v-if="hasNext">
         <span>&gt;</span>
       </button>
     </div>
@@ -18,6 +18,14 @@ export default {
   props: {
     itemData: {
       type: Object,
+      required: true
+    },
+    hasNext: {
+      type: Boolean,
+      required: true
+    },
+    hasPrev: {
+      type: Boolean,
       required: true
     }
   },
