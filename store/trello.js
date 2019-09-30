@@ -31,6 +31,17 @@ export const mutations = {
   setItemData(state, payload) {
     state.boardData[payload.columnIndex].columnItems[payload.itemIndex].data =
       payload.data
+  },
+  moveItem(state, payload) {
+    const copyBoard = state.boardData
+    copyBoard[payload.to.columnIndex].columnItems.push(
+      copyBoard[payload.from.columnIndex].columnItems.splice(
+        payload.from.itemIndex,
+        1
+      )[0]
+    )
+    state.boardData = copyBoard
+    localStorage.setItem('boardData', JSON.stringify(copyBoard))
   }
 }
 
@@ -63,5 +74,8 @@ export const actions = {
   },
   setItemName({ commit }, { data, columnIndex, itemIndex }) {
     commit('setItemData', { data, columnIndex, itemIndex })
+  },
+  moveItemToColumn({ commit }, { from, to }) {
+    commit('moveItem', { from, to })
   }
 }

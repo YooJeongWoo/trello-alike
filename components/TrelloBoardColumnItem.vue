@@ -1,11 +1,11 @@
 <template>
   <div class="item-card">
     <div class="item-container">
-      <button v-if="hasPrev">
+      <button v-if="hasPrev" @click="moveToPrevColumn">
         <span>&lt;</span>
       </button>
       <span>{{ itemData.data }}</span>
-      <button v-if="hasNext">
+      <button v-if="hasNext" @click="moveToNextColumn">
         <span>&gt;</span>
       </button>
     </div>
@@ -13,11 +13,21 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'TrelloBoardColumnItem',
   props: {
     itemData: {
       type: Object,
+      required: true
+    },
+    columnIndex: {
+      type: Number,
+      required: true
+    },
+    itemIndex: {
+      type: Number,
       required: true
     },
     hasNext: {
@@ -33,6 +43,33 @@ export default {
     return {
       isEditing: false
     }
+  },
+  methods: {
+    moveToNextColumn() {
+      this.moveItemToColumn({
+        from: {
+          columnIndex: this.columnIndex,
+          itemIndex: this.itemIndex
+        },
+        to: {
+          columnIndex: this.columnIndex + 1
+        }
+      })
+    },
+    moveToPrevColumn() {
+      this.moveItemToColumn({
+        from: {
+          columnIndex: this.columnIndex,
+          itemIndex: this.itemIndex
+        },
+        to: {
+          columnIndex: this.columnIndex - 1
+        }
+      })
+    },
+    ...mapActions({
+      moveItemToColumn: 'trello/moveItemToColumn'
+    })
   }
 }
 </script>

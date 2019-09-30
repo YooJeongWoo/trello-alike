@@ -9,6 +9,8 @@
         :item-data="item"
         :has-next="hasNext"
         :has-prev="hasPrev"
+        :column-index="Number(columnIndex)"
+        :item-index="Number(index)"
       />
       <button class="item-add-btn" @click="openAddItemPrompt">
         <span>+</span>

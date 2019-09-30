@@ -4,7 +4,7 @@
       v-for="(column, index) in boardData"
       :key="`c-${index}`"
       :column-data="column"
-      :column-index="index"
+      :column-index="Number(index)"
       :has-prev="index !== 0"
       :has-next="index !== boardData.length - 1"
     />
