@@ -1,11 +1,22 @@
 <template>
   <div class="container">
-    <h1>Trello Alike</h1>
+    <h1>Trello alike</h1>
+    <trello />
   </div>
 </template>
 
 <script>
-export default {}
+import Trello from '@/components/Trello.vue'
+
+export default {
+  components: {
+    Trello
+  }
+}
 </script>
 
-<style></style>
+<style>
+.container {
+  padding: 32px 16px;
+}
+</style>
