@@ -1,6 +1,14 @@
 <template>
-  <div>
-    {{ itemData.data }}
+  <div class="item-card">
+    <div class="item-container">
+      <button>
+        <span>&lt;</span>
+      </button>
+      <span>{{ itemData.data }}</span>
+      <button>
+        <span>&gt;</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -20,3 +28,24 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.item-card {
+  width: 100%;
+  background-color: white;
+  padding: 12px 8px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.item-container {
+  width: '100%';
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.item-card span {
+  width: 100%;
+}
+</style>

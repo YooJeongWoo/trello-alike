@@ -7,6 +7,8 @@
         v-for="(item, index) in columnData.columnItems"
         :key="index"
         :item-data="item"
+        :has-next="hasNext"
+        :has-prev="hasPrev"
       />
       <button class="item-add-btn" @click="openAddItemPrompt">
         <span>+</span>
@@ -33,12 +35,12 @@ export default {
       type: Number,
       required: true
     },
-    isFirst: {
+    hasNext: {
       type: Boolean,
       required: false,
       default: false
     },
-    isLast: {
+    hasPrev: {
       type: Boolean,
       required: false,
       default: false
@@ -78,15 +80,14 @@ export default {
 .column-header {
   margin: 12px 8px;
   display: block;
-  width: '100%';
   text-align: center;
 }
 
 .column-item-container {
+  flex: 1;
   display: flex;
   flex-flow: column nowrap;
   align-items: baseline;
-  width: '100%';
   padding: 0 8px;
   margin: 12px 0 0 0;
 }

@@ -26,6 +26,7 @@ export const mutations = {
   },
   pushItemToColumn(state, payload) {
     state.boardData[payload.columnIndex].columnItems.push(payload.item)
+    localStorage.setItem('boardData', JSON.stringify(state.boardData))
   }
 }
 
