@@ -4,7 +4,9 @@
       <button v-if="hasPrev" @click="moveToPrevColumn">
         <span>&lt;</span>
       </button>
-      <span>{{ itemData.data }}</span>
+      <span contenteditable="true" @blur="onItemDataInputChange">
+        {{ itemData.data }}
+      </span>
       <button v-if="hasNext" @click="moveToNextColumn">
         <span>&gt;</span>
       </button>
@@ -67,8 +69,17 @@ export default {
         }
       })
     },
+    onItemDataInputChange(e) {
+      const data = e.target.textContent
+      this.setItemData({
+        data,
+        columnIndex: this.columnIndex,
+        itemIndex: this.itemIndex
+      })
+    },
     ...mapActions({
-      moveItemToColumn: 'trello/moveItemToColumn'
+      moveItemToColumn: 'trello/moveItemToColumn',
+      setItemData: 'trello/setItemData'
     })
   }
 }

@@ -50,6 +50,7 @@ export const mutations = {
   setItemData(state, payload) {
     state.boardData[payload.columnIndex].columnItems[payload.itemIndex].data =
       payload.data
+    localStorage.setItem('boardData', JSON.stringify(state.boardData))
   },
   moveItem(state, payload) {
     const copyBoard = state.boardData
@@ -94,7 +95,7 @@ export const actions = {
   addItemToColumn({ commit }, { item, columnIndex }) {
     commit('pushItemToColumn', { item, columnIndex })
   },
-  setItemName({ commit }, { data, columnIndex, itemIndex }) {
+  setItemData({ commit }, { data, columnIndex, itemIndex }) {
     commit('setItemData', { data, columnIndex, itemIndex })
   },
   moveItemToColumn({ commit }, { from, to }) {
