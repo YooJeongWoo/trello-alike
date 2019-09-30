@@ -4,7 +4,7 @@
       <!-- Tool Bar -->
       <trello-tool-bar />
       <!-- Columns Area -->
-      <trello-board />
+      <trello-board :board-data="boardData" />
     </div>
   </div>
 </template>
@@ -18,6 +18,12 @@ export default {
   components: {
     TrelloToolBar,
     TrelloBoard
+  },
+  props: {
+    boardData: {
+      type: Array,
+      required: true
+    }
   }
 }
 </script>
