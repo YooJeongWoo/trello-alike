@@ -24,6 +24,25 @@ export const mutations = {
     state.boardData = payload
     localStorage.setItem('boardData', JSON.stringify(payload))
   },
+  addColumn(state, payload) {
+    const { columnName } = payload
+    switch (payload.position) {
+      case 'first':
+        state.boardData.unshift({
+          columnName,
+          columnItems: []
+        })
+        break
+      case 'last':
+        state.boardData.push({
+          columnName,
+          columnItems: []
+        })
+        break
+      default:
+        break
+    }
+  },
   pushItemToColumn(state, payload) {
     state.boardData[payload.columnIndex].columnItems.push(payload.item)
     localStorage.setItem('boardData', JSON.stringify(state.boardData))
@@ -68,6 +87,9 @@ export const actions = {
       const boardData = data || defaultBoardData
       commit('setBoardData', boardData)
     })
+  },
+  addColumn({ commit }, { columnName, position }) {
+    commit('addColumn', { columnName, position })
   },
   addItemToColumn({ commit }, { item, columnIndex }) {
     commit('pushItemToColumn', { item, columnIndex })

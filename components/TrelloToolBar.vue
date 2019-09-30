@@ -1,13 +1,26 @@
 <template>
   <div class="tool-bar-container">
-    <button>Add new column to first</button>
-    <button>Add new column to last</button>
+    <button @click="addColumnPrompt('first')">Add new column to first</button>
+    <button @click="addColumnPrompt('last')">Add new column to last</button>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'TrelloToolBar'
+  name: 'TrelloToolBar',
+  methods: {
+    addColumnPrompt(position) {
+      const columnName = window.prompt('Type in column name')
+      if (columnName) {
+        this.addColumn({ columnName, position })
+      }
+    },
+    ...mapActions({
+      addColumn: 'trello/addColumn'
+    })
+  }
 }
 </script>
 
